@@ -37,8 +37,13 @@ async def with_gather():
         print("results: ", results)  # ["world", "hello"]
 
 
+async def main():
+    """非同期処理のエントリーポイント"""
+    await with_await()
+    await with_task()
+    await with_gather()
+
+
 if __name__ == "__main__":
-    # 本当はasyncio.run()はエントリーポイントを呼び出す1回だけ使われるべき
-    asyncio.run(with_await())
-    asyncio.run(with_task())
-    asyncio.run(with_gather())
+    # asyncio.run()はエントリーポイントを呼び出す1回だけ使われるべき
+    asyncio.run(main())
